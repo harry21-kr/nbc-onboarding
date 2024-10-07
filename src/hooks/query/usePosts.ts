@@ -4,7 +4,8 @@ import { getPosts } from "../../api/getPosts";
 import { Post } from "../../types/post";
 
 const usePosts = () => {
-  const initialPostData = useLoaderData() as Post[];
+  const { postList: initialPostData } = useLoaderData() as { postList: Post[] };
+
   return useQuery({
     queryKey: ["posts"],
     queryFn: getPosts,

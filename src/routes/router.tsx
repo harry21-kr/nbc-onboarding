@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { getPosts } from "../api/getPosts";
+import { getUsers } from "../api/getUsers";
 import Layout from "../Layout";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
@@ -11,7 +12,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        loader: getPosts,
+        loader: async () => {
+          const [postList, userList] = await Promise.all([
+            getPosts(),
+            getUsers(),
+          ]);
+          return { postList, userList };
+        },
+
         element: <HomePage />,
       },
       { path: "/login", element: <LoginPage /> },
