@@ -1,20 +1,14 @@
-import { useEffect } from "react";
 import usePosts from "../../hooks/query/usePosts";
+import PostList from "./components/Posts/PostList";
 
 const HomePage = () => {
-  const { data } = usePosts();
+  const { data: postList } = usePosts();
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  if (!postList) {
+    return <div>Something was wrong.</div>;
+  }
 
-  return (
-    <div>
-      {data?.map((v) => (
-        <div key={v.id}>{v.title}</div>
-      ))}
-    </div>
-  );
+  return <PostList postList={postList} />;
 };
 
 export default HomePage;
