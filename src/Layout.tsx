@@ -1,9 +1,11 @@
 import { Outlet } from "react-router-dom";
+import Header from "./components/Header";
 
 const Layout = () => {
   return (
-    <main className="flex justify-center">
-      <div className="max-w-[1224px]">
+    <main>
+      <Header />
+      <div className="max-w-[800px] mt-[60px] mx-auto">
         <Outlet />
       </div>
     </main>
