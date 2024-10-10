@@ -1,7 +1,9 @@
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
+import useWatchAccountStatus from "./hooks/useWatchAccountStatus";
 
 const Layout = () => {
+  useWatchAccountStatus();
   return (
     <main>
       <Header />
